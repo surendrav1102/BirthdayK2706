@@ -1,0 +1,3041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Favorite Human ❤️</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Playfair Display & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        /* ============================================
+           TYPOGRAPHY & BASE STYLES
+           ============================================ */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #fdf8f6 0%, #f5ede5 100%);
+            color: #2a2a2a;
+            overflow-x: hidden;
+        }
+        
+        /* Serif headings */
+        .serif-heading {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        
+        .script-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        /* ============================================
+           FLOATING HEARTS & SPARKLES CANVAS
+           ============================================ */
+        
+        #floatingCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        /* ============================================
+           GLASSMORPHISM & PREMIUM EFFECTS
+           ============================================ */
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
+        
+        .soft-shadow {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+        
+        .luxury-gradient {
+            background: linear-gradient(135deg, #fdf8f6 0%, #f5e6d3 50%, #ede1d4 100%);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4af37 0%, #f7dc6f 100%);
+        }
+        
+        /* ============================================
+           PAGE TRANSITIONS & ANIMATIONS
+           ============================================ */
+        
+        @keyframes fadeInLetter {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes breathe {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.95;
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+            }
+        }
+        
+        @keyframes buttonTeleport {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.8) rotate(10deg);
+            }
+        }
+        
+        @keyframes infinityLoop {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .animate-letter {
+            display: inline-block;
+            animation: fadeInLetter 0.6s ease-out forwards;
+        }
+        
+        .animate-breathe {
+            animation: breathe 4s ease-in-out infinite;
+        }
+        
+        .animate-teleport {
+            animation: buttonTeleport 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .animate-infinity {
+            animation: infinityLoop 8s linear infinite;
+        }
+        
+        /* ============================================
+           PAGE SECTIONS
+           ============================================ */
+        
+        .page-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+        
+        .page-section.intro {
+            background: radial-gradient(circle at 50% 50%, rgba(253, 248, 246, 0.9) 0%, rgba(230, 200, 180, 0.6) 100%);
+        }
+        
+        /* Page 2: gentle pink glow background */
+        #page2 {
+            background: radial-gradient(circle at 50% 35%, rgba(255, 192, 203, 0.22) 0%, rgba(255, 182, 193, 0.12) 40%, rgba(255, 245, 250, 0.02) 100%);
+            transition: background 0.6s ease;
+        }
+
+        /* Decorative hearts between photo/text pairs */
+        .decorative-hearts {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin: 20px 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .decorative-hearts .heart {
+            font-size: 28px;
+            display: inline-block;
+            transform-origin: center;
+            animation: floatUp 2.4s ease-in-out infinite;
+            opacity: 0.95;
+            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.06));
+        }
+
+        .decorative-hearts .heart:nth-child(2) { animation-delay: 0.15s; font-size: 34px; }
+        .decorative-hearts .heart:nth-child(3) { animation-delay: 0.3s; font-size: 26px; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.06); }
+            100% { transform: translateY(0) scale(1); }
+        }
+        
+        /* ============================================
+           BUTTONS
+           ============================================ */
+        
+        .luxury-button {
+            padding: 16px 48px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+        
+        .button-yes {
+            border-color: #d4af37;
+            background: linear-gradient(135deg, #d4af37 0%, #f7dc6f 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .button-yes:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+        
+        .button-no {
+            border-color: #d4af37;
+            background: transparent;
+            color: #d4af37;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .button-no:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* ============================================
+           CARD REVEALS
+           ============================================ */
+        
+        .reveal-card {
+            position: relative;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .reveal-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-seal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #d4af37 0%, #f7dc6f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            z-index: 20;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.4s ease;
+        }
+        
+        .reveal-card.opened .card-seal {
+            transform: scale(0) rotate(180deg);
+        }
+        
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f5e6d3 0%, #ede1d4 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            z-index: 15;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .reveal-card.opened .card-back {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .card-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 40px;
+            z-index: 10;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+        }
+        
+        .card-front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+            z-index: 1;
+        }
+        
+        .reveal-card.opened .card-front {
+            opacity: 1;
+        }
+        
+        .card-text {
+            position: relative;
+            z-index: 2;
+            color: white;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        /* ============================================
+           TIMELINE
+           ============================================ */
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+        
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            padding: 0 40px;
+        }
+        
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #d4af37 0%, #f7dc6f 100%);
+            border-radius: 50%;
+            margin-top: 8px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        
+        .timeline-image {
+            flex: 1;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        /* ============================================
+           AUDIO VISUALIZER
+           ============================================ */
+        
+        .audio-visualizer {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 4px;
+            z-index: 100;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        
+        .audio-visualizer.active {
+            opacity: 1;
+        }
+        
+        .visualizer-bar {
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(to top, #d4af37, #f7dc6f);
+            border-radius: 2px;
+            animation: visualize 0.4s ease-in-out infinite;
+        }
+        
+        .visualizer-bar:nth-child(1) { animation-delay: 0s; }
+        .visualizer-bar:nth-child(2) { animation-delay: 0.1s; }
+        .visualizer-bar:nth-child(3) { animation-delay: 0.2s; }
+        .visualizer-bar:nth-child(4) { animation-delay: 0.1s; }
+        .visualizer-bar:nth-child(5) { animation-delay: 0s; }
+        
+        @keyframes visualize {
+            0%, 100% {
+                height: 8px;
+                opacity: 0.6;
+            }
+            50% {
+                height: 24px;
+                opacity: 1;
+            }
+        }
+        
+        .audio-visualizer.paused .visualizer-bar {
+            animation: none;
+            height: 8px;
+            opacity: 0.4;
+        }
+        
+        /* ============================================
+           SCROLL-TRIGGERED ANIMATIONS
+           ============================================ */
+        
+        .scroll-fade {
+            opacity: 0;
+        }
+        
+        .scroll-fade.in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .scroll-slide-left {
+            opacity: 0;
+            transform: translateX(-40px);
+        }
+        
+        .scroll-slide-left.in {
+            animation: slideInLeft 0.8s ease forwards;
+        }
+        
+        .scroll-slide-right {
+            opacity: 0;
+            transform: translateX(40px);
+        }
+        
+        .scroll-slide-right.in {
+            animation: slideInRight 0.8s ease forwards;
+        }
+        
+        /* ============================================
+           MASONRY GRID
+           ============================================ */
+        
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .masonry-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .masonry-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .masonry-item-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .masonry-item:nth-child(2) {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+        
+        .masonry-item:nth-child(2) .masonry-item-img {
+            height: 100%;
+        }
+        
+        .masonry-center-glow {
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+        
+        /* ============================================
+           DECORATIVE PHOTO BORDERS (Flowers & Hearts)
+           ============================================ */
+        
+        .photo-decorated {
+            position: relative;
+        }
+        
+        .photo-decorated::before,
+        .photo-decorated::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        /* Top-left corner decoration */
+        .photo-decorated::before {
+            top: -8px;
+            left: -8px;
+            width: 60px;
+            height: 60px;
+            background: 
+                radial-gradient(circle at 15px 15px, #ff69b4 0%, #ff69b4 4px, transparent 4px),
+                radial-gradient(circle at 35px 15px, #ffc0cb 0%, #ffc0cb 5px, transparent 5px),
+                radial-gradient(circle at 15px 35px, #ff1493 0%, #ff1493 4px, transparent 4px);
+            filter: drop-shadow(0 2px 4px rgba(255, 105, 180, 0.3));
+        }
+        
+        /* Bottom-right corner decoration */
+        .photo-decorated::after {
+            bottom: -8px;
+            right: -8px;
+            width: 60px;
+            height: 60px;
+            background: 
+                radial-gradient(circle at 45px 45px, #ffb6c1 0%, #ffb6c1 5px, transparent 5px),
+                radial-gradient(circle at 25px 45px, #ff69b4 0%, #ff69b4 4px, transparent 4px),
+                radial-gradient(circle at 45px 25px, #ff1493 0%, #ff1493 4px, transparent 4px);
+            filter: drop-shadow(0 2px 4px rgba(255, 105, 180, 0.3));
+        }
+        
+        /* Flower decorations using Unicode */
+        .photo-decorated-flowers {
+            position: relative;
+        }
+        
+        .photo-decorated-flowers::before {
+            content: '🌸';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            font-size: 32px;
+            z-index: 5;
+            pointer-events: none;
+            animation: floatFlower 3s ease-in-out infinite;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+        }
+        
+        .photo-decorated-flowers::after {
+            content: '💖';
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            font-size: 32px;
+            z-index: 5;
+            pointer-events: none;
+            animation: floatHeart 3s ease-in-out infinite;
+            animation-delay: 0.5s;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+        }
+        
+        /* Additional decorations for specific corners */
+        .photo-decorated-full {
+            position: relative;
+        }
+        
+        .photo-decorated-full::before {
+            content: '🌺';
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            font-size: 28px;
+            z-index: 5;
+            pointer-events: none;
+            animation: spinFlower 6s linear infinite;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+        }
+        
+        .photo-decorated-full::after {
+            content: '💗';
+            position: absolute;
+            bottom: -12px;
+            right: -12px;
+            font-size: 28px;
+            z-index: 5;
+            pointer-events: none;
+            animation: pulseDecor 2s ease-in-out infinite;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+        }
+        
+        /* Top-right flower */
+        .photo-with-corner-decor {
+            position: relative;
+        }
+        
+        .photo-with-corner-decor .top-right-flower {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            font-size: 28px;
+            z-index: 5;
+            pointer-events: none;
+            animation: rotateFlower 8s linear infinite;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+        }
+        
+        /* Bottom-left heart */
+        .photo-with-corner-decor .bottom-left-heart {
+            position: absolute;
+            bottom: -12px;
+            left: -12px;
+            font-size: 28px;
+            z-index: 5;
+            pointer-events: none;
+            animation: bounceDecor 2s ease-in-out infinite;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+        }
+        
+        /* Animations for decorations */
+        @keyframes floatFlower {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-5px) rotate(5deg);
+            }
+        }
+        
+        @keyframes floatHeart {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-5px) scale(1.1);
+            }
+        }
+        
+        @keyframes spinFlower {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes rotateFlower {
+            0%, 100% {
+                transform: rotate(-10deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
+        }
+        
+        @keyframes pulseDecor {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+        }
+        
+        @keyframes bounceDecor {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        
+        @media (max-width: 768px) {
+            .page-section {
+                padding: 30px 20px;
+                min-height: auto;
+            }
+            
+            .serif-heading {
+                font-size: 2.5rem !important;
+            }
+            
+            .luxury-button {
+                padding: 12px 32px;
+                font-size: 0.95rem;
+            }
+            
+            /* Smaller decorations on mobile */
+            .photo-decorated-flowers::before,
+            .photo-decorated-full::before,
+            .photo-with-corner-decor .top-right-flower {
+                font-size: 24px;
+                top: -10px;
+                left: -10px;
+            }
+            
+            .photo-decorated-flowers::after,
+            .photo-decorated-full::after,
+            .photo-with-corner-decor .bottom-left-heart {
+                font-size: 24px;
+                bottom: -10px;
+                right: -10px;
+            }
+            
+            .photo-with-corner-decor .bottom-left-heart {
+                left: -10px;
+            }
+            
+            .photo-with-corner-decor .top-right-flower {
+                right: -10px;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+                margin-bottom: 40px;
+            }
+            
+            .timeline-content,
+            .timeline-image {
+                padding: 0;
+                margin-bottom: 20px;
+            }
+            
+            .reveal-card {
+                height: 350px;
+            }
+            
+            .audio-visualizer {
+                top: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .visualizer-bar {
+                width: 3px;
+                height: 16px;
+            }
+            
+            .masonry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .masonry-item:nth-child(2) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .serif-heading {
+                font-size: 2rem !important;
+            }
+            
+            .masonry-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-seal {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- ============================================
+         FLOATING CANVAS BACKGROUND
+         ============================================ -->
+    <canvas id="floatingCanvas"></canvas>
+    
+    <!-- ============================================
+         AUDIO ELEMENTS - Different songs for each page
+         ============================================ -->
+    <!-- Page 2 Music -->
+    <audio id="music-page2" loop>
+        <source src="music/page2.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Page 3 Music -->
+    <audio id="music-page3" loop>
+        <source src="music/page3.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Page 4 Music -->
+    <audio id="music-page4" loop>
+        <source src="music/page4.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Page 5 Music -->
+    <audio id="music-page5" loop>
+        <source src="music/page5.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Page 6 Music -->
+    <audio id="music-page6" loop>
+        <source src="music/page6.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- ============================================
+         AUDIO VISUALIZER
+         ============================================ -->
+    <div class="audio-visualizer" id="audioVisualizer">
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+    </div>
+    
+    <!-- ============================================
+         PAGE 1: THE CINEMATIC INTRO
+         ============================================ -->
+    <div class="page-section intro" id="page1">
+        <div class="text-center max-w-2xl mx-auto">
+            <!-- Main Heading: Letter-by-letter animation -->
+            <h1 class="serif-heading text-6xl md:text-7xl mb-8 text-gray-900" id="mainHeading">
+                <!-- JavaScript will populate this with animated letters -->
+            </h1>
+            
+            <!-- Subheading -->
+            <p class="text-xl md:text-2xl text-gray-700 mb-16 leading-relaxed opacity-0 animate-breathe" style="animation-delay: 2s;">
+                Surprised ah?.<br><span class="text-gray-600">Wanna see what lies ahead? </span><br>
+                <span class="text-gray-600">Then smash that Yes Button MyLady😁 </span>
+                
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-center" id="page1-buttons" style="opacity: 0; transition: opacity 1s ease;">
+                <button class="luxury-button button-yes" id="btnYes">
+                    Yes, I'm Ready! 🎉
+                </button>
+                <button class="luxury-button button-no" id="btnNo">
+                    No, Thanks
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ============================================
+         PAGE 2: HOW WE MET
+         ============================================ -->
+    <div class="page-section" id="page2" style="display: none;">
+        <div class="container mx-auto max-w-6xl">
+            <!-- Main Section: Big Photo + Story -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+                
+                <!-- Large Image Section -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-2xl h-96 md:h-full photo-decorated-flowers">
+                    <!-- CUSTOMIZE: Replace with your main photo URL -->
+                    <img 
+                        src="images/PAGE1_1.jpg" 
+                        alt="How we met" 
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    >
+                </div>
+                
+                <!-- Story Text Section -->
+                <div class="space-y-6">
+                    <h2 class="serif-heading text-5xl md:text-6xl text-gray-900 scroll-fade">
+                        How We Met
+                    </h2>
+                    
+                    <!-- Story Text -->
+                    <div class="text-lg text-gray-700 leading-relaxed space-y-6 scroll-slide-right">
+                        <p>
+                            <!-- CUSTOMIZE: Replace with how you met -->
+                            Hmm , HOW WE MET ??? , Gods Good , God knows. Even though I'll tell how we met  "Idu ondu dodda danta kathe" , So I saw you in VCVR on a special day playing throwball , that's when i fall in love with you(In CLG that) , and I said my frnds that ur the prettiest gurl in clg(In the world too) and since that day and till the end of ur clg day they haven't left us teasing you and me. I know they went too far so sorry for that even now. <br>After my KCET Exam i thought of talking to u but not couragous enough to do that. So went home asked everyone for ur contact(Insta ID) but no one gave , then i come to know u don't have one and when u made the acc i got that account immediately and sent the request and which u didn't accept(Which hurts now also) , after so many attempts u accepted the request. Such a GODLY thing from DEVI💓 
+                            <br>And then OUR Story begins😁💓💗<br>"BTW photo beside the text is captured by me that's first photo💓💗🥰  "
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decorative hearts between main photo and the two-photo section -->
+            <div class="decorative-hearts" aria-hidden="true">
+                <span class="heart">💖</span>
+                <span class="heart">💗</span>
+                <span class="heart">💞</span>
+            </div>
+
+            <!-- Two Photos with Text Section - Reorganized Layout -->
+            <div class="space-y-12 mb-16">
+                
+                <!-- Top Row: Photo 2 on left, its text on right -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow photo-decorated-full">
+                        <img src="images/PAGE1_2.jpg" alt="Memory 2" class="w-full h-full object-contain">
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-lg h-fit">
+                        <p class="text-gray-700 leading-relaxed">
+                            <!-- CUSTOMIZE: Add your text for this photo -->
+                            This Selfie was our first selfie together, such a lovely moment🥰💗. And that's our first meeting in real-life and me being melted by ur cuteness 🫠 is still my fav genre 😁❤️.<br>We used to msg rarely weekly once or twice if i remember. Then we made some clarities related to our PU clg life , i can't tell here feels embarrassed. Then we started talking daily, i started openup to u more and gradually our bond grew😁💗 and final(Many things are there to tell but let some imp events to be told 😁💗)  we decided to meet on my brdy in Gopalan Mall , you gifted me Luffy Figure which is such a lovely gift that someone gifted me beside my family, I still look after that with very care 😁. We had lot of fun on that day from discussing about our heights to playing games(Ghost house, Ice Hockey) such lovely moments.Then went to your home had fun there too, i still remember when you kept your head on my shoulder. Like gurl you made me completely shaking and i can't think properly , like from seeing you from some corner to have your company , we come long way 😁🥰. <br>You have even given me lot of nicknames MONKEY,HANDI,DANA 😂😂😁🥰💗<br>"It took 1 year and 1-2 months(counted from when we started talking) for this friendship to grow into what it is today. "                         </p>
+                    </div>
+                </div>
+                
+                <!-- Decorative hearts between pairs (not after last) -->
+                <div class="decorative-hearts" aria-hidden="true">
+                    <span class="heart">💖</span>
+                    <span class="heart">💗</span>
+                    <span class="heart">💞</span>
+                </div>
+
+                <!-- Bottom Row: Photo 1's text on left, Photo 1 on right -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white rounded-xl p-6 shadow-lg h-fit">
+                        <p class="text-gray-700 leading-relaxed">
+                            <!-- CUSTOMIZE: Add your text for this photo -->
+                            This photo is captured on our meeting(Date?). After this day we went for Appu's rerelease movie "AAKASHA" our first movie together and invitation is from u and i made some fuss before coming there and lot of things had happened there , i think you remembers those moments. We clicked lots of weird weird photos & did interview type video , did prank , played games , watched movies stayed with you like 24hr nearly , truely a GOD's gift for me being with you for that long time. Such lovely moments wished the time freeze , i would live happy that moment.(BTW Dosa 🙏😂 on next day morning)<br>And i know , i didn't interacted with others proper my bad , Sorry bangari❤️.You tried to make me socialize but for me still long road is there and u'll be my guide 😁.Next day did some prank with ur PU classmate and done ur hackathon and ragebaited that junior kid 😂😂 who was ur teamlead and tired to watch movie but we can't 😂😂. And then my my very very very very fav moment u feeding me❤️❤️❤️❤️❤️😁😁😁😁😁 with singing a song ("Gehra Hua") still plays in my mind such a lovely moment ❤️😁❤️😭 wished that time would stop there 😁(Can we recreate that moment ?).<br>Anyway we become close.
+                        </p>
+                    </div>
+                    <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow photo-decorated-flowers">
+                        <img src="images/PAGE1_3.jpg" alt="Memory 1" class="w-full h-full object-contain">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation to next page (moved to end of content with hearts) -->
+            <div id="page2-footer-nav" class="flex flex-col items-center justify-center mt-8 mb-12">
+                <div class="decorative-hearts mb-4" aria-hidden="true">
+                    <span class="heart">💖</span>
+                    <span class="heart">💗</span>
+                    <span class="heart">💞</span>
+                </div>
+                <div class="flex gap-4">
+                    <button id="btnPrev" class="luxury-button button-no" style="display: none;">← Previous</button>
+                    <button id="btnNext" class="luxury-button button-yes">Wanna See More?</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ============================================
+         PAGE 3: EVERYTHING IS BETTER WITH YOU
+         ============================================ -->
+    <div class="page-section" id="page3" style="display: none;">
+        <div class="container mx-auto max-w-5xl px-4">
+            
+            <!-- Main Title with Sparkles -->
+            <div class="text-center mb-24 scroll-fade">
+                <div class="mb-6 text-6xl animate-breathe">✨</div>
+                <h2 class="serif-heading text-5xl md:text-7xl text-gray-900 mb-6">
+                    Everything Is Better<br>With You ✨
+                </h2>
+                <div class="flex justify-center gap-3 text-3xl mt-8 animate-breathe" style="animation-delay: 0.5s;">
+                    <span>💖</span>
+                    <span>💗</span>
+                    <span>💞</span>
+                </div>
+            </div>
+
+            <!-- Subtopic 1: You spread positivity -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16 scroll-slide-left">
+                <div>
+                    <div class="inline-block mb-6">
+                        <span class="text-5xl">🌞</span>
+                    </div>
+                    <h3 class="serif-heading text-4xl text-gray-900 mb-4">You spread positivity</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        Yep, that's true your existence itself gives the positivity for me, don't know about other. Your are full of energy and bright smile light up even in the darkest moments . The darkest moments of my life is in IInd PU life but after seeing you it kinda changed me , your positivity , bright smile. With you, every moment becomes a celebration. 💫
+                    </p>
+                    <div class="flex gap-3 text-2xl">
+                        <span>🌺</span>
+                        <span>🌸</span>
+                        <span>🌼</span>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 h-80 photo-with-corner-decor">
+                    <span class="top-right-flower">🌸</span>
+                    <span class="bottom-left-heart">💕</span>
+                    <!-- CUSTOMIZE: Replace with your photo 1 URL -->
+                    <img src="images/PAGE2_1.jpg" alt="You spread positivity" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-pink-500/20 via-transparent to-transparent"></div>
+                </div>
+            </div>
+
+            <!-- Decorative Hearts -->
+            <div class="flex justify-center gap-4 text-3xl mb-16 animate-breathe" style="animation-delay: 0.3s;">
+                <span>💕</span>
+                <span>💗</span>
+                <span>💞</span>
+                <span>💓</span>
+            </div>
+
+            <!-- Subtopic 2: You care genuinely -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16 scroll-slide-right">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 h-80 md:order-first photo-with-corner-decor">
+                    <span class="top-right-flower">🌺</span>
+                    <span class="bottom-left-heart">💗</span>
+                    <!-- CUSTOMIZE: Replace with your photo 2 URL -->
+                    <img src="images/PAGE2_2.jpg" alt="You care genuinely" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-red-500/20 via-transparent to-transparent"></div>
+                </div>
+                <div class="md:order-last">
+                    <div class="inline-block mb-6">
+                        <span class="text-5xl">💝</span>
+                    </div>
+                    <h3 class="serif-heading text-4xl text-gray-900 mb-4">You care genuinely</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        Actually u care only if u know that person otherwise u'll be mean to them and u care only close ones which is very good (BTW i like that attitude). Before u knowing me better u used to rude , mean to me that's fine every other gurl would the same. Yep after knowing me better , you do cared about me genuinely.You remember the little things and show up when it matters most. You've taught me what real caring looks like. 🥰
+                    </p>
+                    <div class="flex gap-3 text-2xl">
+                        <span>💐</span>
+                        <span>🌹</span>
+                        <span>🌷</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decorative Hearts -->
+            <div class="flex justify-center gap-4 text-3xl mb-16 animate-breathe" style="animation-delay: 0.6s;">
+                <span>💓</span>
+                <span>💕</span>
+                <span>💗</span>
+                <span>💞</span>
+            </div>
+
+            <!-- Subtopic 3: You inspire without trying -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16 scroll-slide-left">
+                <div>
+                    <div class="inline-block mb-6">
+                        <span class="text-5xl">⭐</span>
+                    </div>
+                    <h3 class="serif-heading text-4xl text-gray-900 mb-4">You inspire without trying</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        This quality of urs is true believe me 😭❤️. I have experienced myself. In my IInd PU i thought of giving up like what a JEE aspirant can even achieve in VCVR , this is most depressing part of my life. But But after seeing you , knowing about i really inspired from you like "Kavana is trying her best even in this shitty college , why can't " So again i decided to study , got my hopes through you.<br>You don't need to try to inspire me—you just do. Your dedication, your dreams, your perseverance, the way you face challenges with grace—all of it makes me want to be a better version of myself. You're my greatest inspiration, and i'll always supports you in whatever the matter.    ✨
+                    </p>
+                    <div class="flex gap-3 text-2xl">
+                        <span>🌟</span>
+                        <span>💫</span>
+                        <span>✨</span>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 h-80 photo-with-corner-decor">
+                    <span class="top-right-flower">🌼</span>
+                    <span class="bottom-left-heart">💖</span>
+                    <!-- CUSTOMIZE: Replace with your photo 3 URL -->
+                    <img src="images/PAGE2_3.jpg" alt="You inspire without trying" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-purple-500/20 via-transparent to-transparent"></div>
+                </div>
+            </div>
+
+            <!-- Decorative Hearts -->
+            <div class="flex justify-center gap-4 text-3xl mb-16 animate-breathe" style="animation-delay: 0.9s;">
+                <span>💖</span>
+                <span>💗</span>
+                <span>💞</span>
+                <span>💓</span>
+            </div>
+
+            <!-- Subtopic 4: You stay true to yourself -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16 scroll-slide-right">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 h-80 md:order-first photo-with-corner-decor">
+                    <span class="top-right-flower">🌷</span>
+                    <span class="bottom-left-heart">💞</span>
+                    <!-- CUSTOMIZE: Replace with your photo 4 URL -->
+                    <img src="images/PAGE2_4.jpg" alt="You stay true to yourself" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-500/20 via-transparent to-transparent"></div>
+                </div>
+                <div class="md:order-last">
+                    <div class="inline-block mb-6">
+                        <span class="text-5xl">👑</span>
+                    </div>
+                    <h3 class="serif-heading text-4xl text-gray-900 mb-4">You stay true to yourself</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        Be true to you. Don't change for shitty people or anyone.Your values, your integrity, your uniqueness—they shine through. You don't dim your light for anyone, and that's incredibly admirable. I loves you the way you are , you no need to change. You beautiful , prettiest , cutest , gorgeous , stunning in your own way. I loves your every chaos , every act ,every action , i loves anything you do. You are what you are , You are KAVANA and i loves what you are not someone i see through you. You'll always be KAVANA be yourself and i'll supports , loves , admires you the way you are.😁💓🫠🥰💗
+                    </p>
+                    <div class="flex gap-3 text-2xl">
+                        <span>💪</span>
+                        <span>🔥</span>
+                        <span>💎</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decorative Hearts -->
+            <div class="flex justify-center gap-4 text-3xl mb-16 animate-breathe" style="animation-delay: 1.2s;">
+                <span>💕</span>
+                <span>💗</span>
+                <span>💞</span>
+                <span>💓</span>
+            </div>
+
+            <!-- Subtopic 5: Your aura gives warmth to soul -->
+            <div class="bg-gradient-to-r from-pink-100 via-purple-50 to-pink-100 rounded-3xl p-12 mb-16 scroll-fade text-center">
+                <div class="text-6xl mb-6 animate-breathe">🫂</div>
+                <h3 class="serif-heading text-4xl text-gray-900 mb-6">Your aura gives warmth to soul</h3>
+                <p class="text-xl text-gray-800 leading-relaxed max-w-2xl mx-auto">
+                    There's something intangible about you—a warmth that emanates from deep within. When I'm with you, everything feels right. Your presence alone is enough to soothe my soul, to calm my worries, and to fill my heart with pure peace. You're my sanctuary, my home, my life , my everthing. 💕
+                </p>
+                <div class="flex justify-center gap-4 text-3xl mt-8 animate-breathe" style="animation-delay: 0.5s;">
+                    <span>🌙</span>
+                    <span>💗</span>
+                    <span>☀️</span>
+                </div>
+            </div>
+
+            <!-- Lovely Gesture Section -->
+            <div class="bg-gradient-to-br from-rose-100 via-pink-50 to-purple-100 rounded-3xl p-12 mb-16 scroll-fade text-center shadow-2xl">
+                <div class="text-5xl mb-6 animate-infinity">♥️</div>
+                <h3 class="serif-heading text-4xl text-gray-900 mb-6">A Lovely Gesture for You</h3>
+                <div class="max-w-2xl mx-auto">
+                    <p class="text-lg text-gray-800 leading-relaxed mb-6">
+                        Every smile you share, every laugh we create together, every moment of vulnerability you show me—these are the gestures that matter most. You don't need grand displays; your everyday presence, your simple kindness, the way you make me feel seen and loved... that's everything. 🥰
+                    </p>
+                    <div class="flex justify-center flex-wrap gap-6 text-4xl mb-6">
+                        <span class="animate-breathe" style="animation-delay: 0s;">💝</span>
+                        <span class="animate-breathe" style="animation-delay: 0.2s;">💖</span>
+                        <span class="animate-breathe" style="animation-delay: 0.4s;">🌹</span>
+                        <span class="animate-breathe" style="animation-delay: 0.6s;">✨</span>
+                        <span class="animate-breathe" style="animation-delay: 0.8s;">🦋</span>
+                    </div>
+                    <p class="text-lg text-gray-700 italic">
+                        "You are the finest, loveliest, tenderest, and most beautiful person I have ever known."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div id="page3-footer-nav" class="flex flex-col items-center justify-center mt-12 mb-12">
+                <div class="decorative-hearts mb-6" aria-hidden="true">
+                    <span class="heart">💖</span>
+                    <span class="heart">💗</span>
+                    <span class="heart">💞</span>
+                </div>
+                <h2 class="serif-heading text-5xl md:text-7xl text-gray-900 mb-6">
+                    And Everthing is better<br>since YOU❤️💓
+                </h2>
+                <button id="btnNext3" class="luxury-button button-yes text-lg px-12 py-4 hover:scale-105 transition-transform" style="display: inline-block;">
+                    Still there is something 💕
+                </button>
+            </div>
+
+            <!-- Previous Page Button - Bottom Left Corner -->
+            <div style="position: fixed; bottom: 30px; left: 30px; z-index: 10;">
+                <button id="btnPrev3" class="page-corner-prev-btn" style="background: rgba(212, 175, 55, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; color: #d4af37; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);">
+                    ←
+                </button>
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- ============================================
+         PAGE 4: THE GIRL YOU ARE & WHAT I ADMIRE
+         ============================================ -->
+    <div class="page-section" id="page4" style="display: none;">
+        <div class="container mx-auto max-w-5xl px-4">
+            
+            <!-- Tab Navigation -->
+            <div class="flex justify-center gap-6 mb-16 scroll-fade">
+                <button class="tab-btn active-tab page4-tab" data-tab="tab1" style="border: none; background: none; cursor: pointer; padding: 0;">
+                    <div class="text-center p-6 rounded-2xl transition-all duration-300 glass-effect soft-shadow hover:scale-105" style="background: rgba(255, 255, 255, 0.8);">
+                        <div class="text-4xl mb-3">🌸</div>
+                        <p class="serif-heading text-2xl text-gray-900">The Girl You Are</p>
+                    </div>
+                </button>
+                
+                <button class="tab-btn page4-tab" data-tab="tab2" style="border: none; background: none; cursor: pointer; padding: 0;">
+                    <div class="text-center p-6 rounded-2xl transition-all duration-300 glass-effect soft-shadow hover:scale-105" style="background: rgba(255, 255, 255, 0.5);">
+                        <div class="text-4xl mb-3">❤️</div>
+                        <p class="serif-heading text-2xl text-gray-700">What I Admire About You</p>
+                    </div>
+                </button>
+            </div>
+
+            <!-- TAB 1: THE GIRL YOU ARE -->
+            <div id="tab1" class="tab-content active-content">
+                <div class="text-center mb-12 scroll-fade">
+                    <h2 class="serif-heading text-5xl md:text-6xl text-gray-900 mb-6">The Girl You Are 🌸</h2>
+                    <div class="flex justify-center flex-wrap gap-3 text-2xl mb-6">
+                        <span>⚡</span>
+                        <span>💬</span>
+                        <span>💖</span>
+                        <span>✨</span>
+                        <span>🕊️</span>
+                        <span>🌧️</span>
+                        <span>😌</span>
+                    </div>
+                </div>
+
+                <!-- Topics Grid for Tab 1 -->
+                <div class="space-y-20">
+                    
+                    <!-- Topic 1: Energy Switch -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-left">
+                        <div>
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">⚡</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">The Energy Switch</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                You have such a energy which i don't have. You are blessed with such a lovely thing. You are chill,cool,awesome person i ever meet. The way you dance is another level (at starting you won't do much better after that you are awesome). And one more thing is that your energy depends on your mood. Finally Your energy is electric and infectious. You have this incredible ability to flip a switch and light up any room you enter.💫
+                            </p>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-decorated-flowers">
+                                <img src="images/PAGE4.1.1.jpg" alt="Energy" class="w-full h-full object-contain">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-2xl gap-3 animate-breathe">
+                        <span>💕</span>
+                        <span>💗</span>
+                        <span>💞</span>
+                    </div>
+
+                    <!-- Topic 2: Social Butterfly -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-right">
+                        <div class="flex justify-center md:order-first">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-decorated-full">
+                                <img src="images/PAGE4.1.2.jpg" alt="Social" class="w-auto h-full object-contain">
+                            </div>
+                        </div>
+                        <div class="md:order-last">
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">💬</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">The Social Butterfly</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                              As i know ur not type of gurl , who approaches and talks first , but if someone approaches you and talks first with u , u'll talk with them very respectfully. And ur not completely introvert type but u'll talk with others without fear. And your charisma draws people in, and your genuine interest in others makes them feel valued. You're the one who brings groups together, who makes strangers feel like friends. Your social grace is something I deeply admire. 🦋  
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-2xl gap-3 animate-breathe" style="animation-delay: 0.3s;">
+                        <span>💓</span>
+                        <span>💕</span>
+                        <span>💗</span>
+                    </div>
+
+                    <!-- Topic 3: Kind Heart -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-left">
+                        <div>
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">💖</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">The Kind Heart</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                              Your kindness is boundless. The way you treat people with such gentleness and compassion.You see the good in people and bring out the best in them. Your heart is pure gold. But for me at first u used to rude , mean i think u have ur own reason, But after knowing me, you have treated me with very Kind i can't even explain in words 😭😭😭 . The only person ur who showed such love and kindness to me beside my family. Wish u never lose that kindness in u. Ur light of my darkness,  MyGurl.🥰💗💓  
+                            </p>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-with-corner-decor">
+                                <span class="top-right-flower">🌸</span>
+                                <span class="bottom-left-heart">💕</span>
+                                <img src="images/PAGE4.1.3.jpg" alt="Kind" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-2xl gap-3 animate-breathe" style="animation-delay: 0.6s;">
+                        <span>💖</span>
+                        <span>💗</span>
+                        <span>💞</span>
+                    </div>
+
+                    <!-- Topic 4: Talented Soul -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-right">
+                        <div class="flex justify-center md:order-first">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-with-corner-decor">
+                                <span class="top-right-flower">🌺</span>
+                                <span class="bottom-left-heart">💗</span>
+                                <img src="images/PAGE4.1.4.jpg" alt="Talent" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="md:order-last">
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">✨</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">The Talented Soul</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                Obviously ur talented, after all who u r, the KAVANA P G one who ruled the NEET xam in VCVR. Not only in studies, ur good in sports especially in throwball, cricket ...... . And in dance and music , i can't explain gurl, ur voice is the sweetest voice i ever heard, and the songs u sings r so beautiful like u and i would listen to the songs u sing all day without getting bore. Remember ur voice is the sweetest in the world for me. And in terms of dance actually u dance very well, Really only thing is that u won't believe in u. U do dance very well and beautiful MyLove (that ur childhood dance even though u did mistake, ur the cutest chaos on the stage🥰😂💗).🌟
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-2xl gap-3 animate-breathe" style="animation-delay: 0.9s;">
+                        <span>💕</span>
+                        <span>💗</span>
+                        <span>💞</span>
+                    </div>
+
+                    <!-- Topic 5: High-Maintenance Heart -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-left">
+                        <div>
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">🕊️</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">The High-Maintenance Heart</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                You have high standards, and that's something I respect. You know your worth and don't settle for less. That little bit of "high-maintenance" in you makes you special—it's because you deserve the best. And the best future husband u deserve is me😁. I have understood ur heart very well , u know i'll know when u'll be sad,happy,curious.. so on. And i have adjusted to ur attitude and the way ur 😁😁💗💗 'cause i want to be with u no matter what , even if u beat me , bite me also i'll come with u. I can't live properly without ur lovely company. And finally wt i'm telling u that keep ur standard high MyLove 💗😁. I'll help u to raise ur standard dear , 'cause ur special to me.😽
+                            </p>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-with-corner-decor">
+                                <span class="top-right-flower">🌼</span>
+                                <span class="bottom-left-heart">💖</span>
+                                <img src="images/PAGE4.1.5.jpg" alt="Maintenance" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-2xl gap-3 animate-breathe" style="animation-delay: 1.2s;">
+                        <span>💓</span>
+                        <span>💕</span>
+                        <span>💗</span>
+                    </div>
+
+                    <!-- Topic 6: Soft Side -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-right">
+                        <div class="flex justify-center md:order-first">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-with-corner-decor">
+                                <span class="top-right-flower">🌷</span>
+                                <span class="bottom-left-heart">💞</span>
+                                <img src="images/PAGE4.1.6.jpg" alt="Soft" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="md:order-last">
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">🌧️</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">The Soft Side</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                               Beneath that confidence and strength lies the softest heart. When you're vulnerable with me, it's the most beautiful thing. Your sensitivity, your depth, the way you feel things deeply—it shows how real and genuine you are. Gurl u act all tough, strong , But still you are kid for me with soft heart , sensitive side. You cry for small little things like a baby , don't cry much ok? . U can cry on my shoulder , i'll wipe ur tears ok ? . MyGurl ur softy and i love that 😁 . And the way u make urself comfortable with me means alot for me. Be Same with me don't change I'll be ur soft side😁❤️.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-2xl gap-3 animate-breathe" style="animation-delay: 1.5s;">
+                        <span>💖</span>
+                        <span>💗</span>
+                        <span>💞</span>
+                    </div>
+
+                    <!-- Topic 7: Attitude -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-left">
+                        <div>
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">😌</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">The Attitude</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                Hmm attitude there is no need to tell about this i think. But i'll tell gurl ur attitude is the most admirable thing in u. Don't let others change ur attitude , if someone tries tell me we'll fix that other one 😁😁.I love ur attitude MyGurl. The Photo beside text resembles ur attitude❤️😽.Don't take the attitude in wrong way ok, i'm complimenting ur attitude. Your attitude is everything. Whether you're playful and teasing or serious and determined, every version of you is captivating.💓🥰
+                            </p>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-with-corner-decor">
+                                <span class="top-right-flower">🌻</span>
+                                <span class="bottom-left-heart">💝</span>
+                                <img src="images/PAGE4.1.7.jpg" alt="Attitude" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: WHAT I ADMIRE ABOUT YOU -->
+            <div id="tab2" class="tab-content">
+                <div class="text-center mb-12 scroll-fade">
+                    <h2 class="serif-heading text-5xl md:text-6xl text-gray-900 mb-6">What I Admire About You ❤️</h2>
+                    <div class="flex justify-center flex-wrap gap-3 text-2xl mb-6">
+                        <span>🌟</span>
+                        <span>😊</span>
+                        <span>🤍</span>
+                        <span>🫶</span>
+                        <span>💫</span>
+                        <span>✨</span>
+                    </div>
+                </div>
+
+                <!-- Topics Grid for Tab 2 -->
+                <div class="space-y-20">
+                    
+                    <!-- Topic 1: Your Personality -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-left">
+                        <div>
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">🌟</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">Your Personality</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                Your personality is magnetic , you attracts ppl and human magnet ur. Your so thoughtful, matured, lovely, kind, emotionally sensitive, brave, strong. You really thinks/thought about others too and ur more matured than me('cause i'll be a kid with u so😁😂). ur so lovely person to the close ppl and rude to others 😂😂. Ur so strong gurl , u maybe emotional vulnerability with me but but ur so strong gurl like Kali Maa and has Maa's angriness , calmness , rage also don't let think urself as weak. Ur personality is as beautiful as u and strong as u. Your personality makes you unforgettable. 💫
+                            </p>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-with-corner-decor">
+                                <span class="top-right-flower">🏵️</span>
+                                <span class="bottom-left-heart">💕</span>
+                                <img src="images/PAGE4.2.1.jpg" alt="Personality" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-2xl gap-3 animate-breathe">
+                        <span>💕</span>
+                        <span>💗</span>
+                        <span>💞</span>
+                    </div>
+
+                    <!-- Topic 2: Your Cuteness -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-right">
+                        <div class="flex justify-center md:order-first">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-decorated-flowers">
+                                <img src="images/PAGE4.2.2.jpg" alt="Cuteness" class="w-full h-full object-contain">
+                            </div>
+                        </div>
+                        <div class="md:order-last">
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">😊</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">Your Cuteness</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                You're adorable, and I mean that in every way. The little things you do—the way you scrunch your nose, your smile, your walk, your talks, your thinking, your laugh finally even if u move ur hand also for me it's cute and beautiful 😁🥰. How you react to things—all of it makes my heart melt. Your cuteness is not just physical; it's in your actions, your expressions, everything about you. And pic beside the text tells the cuteness u have and i no need to tell. Atlast wt i'm telling u that , i don't how other thinks but for me , Ur my Cute chaos , my cute gurl , my cute little kolimari , cute little handimari , my cute world u r.😽💓
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-2xl gap-3 animate-breathe" style="animation-delay: 0.3s;">
+                        <span>💓</span>
+                        <span>💕</span>
+                        <span>💗</span>
+                    </div>
+
+                    <!-- Topic 3: Your Kindness -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-left">
+                        <div>
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">🤍</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">Your Kindness</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                I think this is third time i'm telling you about kindness. And still there is lot to tell you 😁. Your kindness is genuine and unconditional. You don't do kind things for recognition; you do them because your heart naturally inclines you toward goodness. For me ur my kindness 😁💓 u have been my emotional support and other supports too overall u supports me in every situation with love and kindness. Beside my family ur kindness is enough for me in this world nothing is needed. ur my everything and ur kindness is the pillar of it.💓😽🥰
+                            </p>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-decorated-full">
+                                <img src="images/PAGE4.2.3.jpg" alt="Kindness" class="w-full h-full object-contain">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-2xl gap-3 animate-breathe" style="animation-delay: 0.6s;">
+                        <span>💖</span>
+                        <span>💗</span>
+                        <span>💞</span>
+                    </div>
+
+                    <!-- Topic 4: The Care You Show Me -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-right">
+                        <div class="flex justify-center md:order-first">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-with-corner-decor">
+                                <span class="top-right-flower">🌸</span>
+                                <span class="bottom-left-heart">💗</span>
+                                <img src="images/PAGE4.2.4.jpg" alt="Care" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="md:order-last">
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">🫶</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">The Care You Show Me</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                The way you care for me is something I've never experienced before. You remember the little things, you check in on me, you go out of your way to make me feel loved. Your care isn't just words—it's shown through consistent actions. That means everything to me. U have made me feel special , even though i'm not that good looking guy , u still says i'm handsome and good looking guy which makes me feel so special. And you have bought the dresses(T-Shirts) for remember gurl those the most beautiful t-shirts i have wore and those t-shirts feels special for me 'cause u have bought those for me. The love and care u have shown is irreplaceable and i don't want them to be replaced by other too.💞💞💞
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-2xl gap-3 animate-breathe" style="animation-delay: 0.9s;">
+                        <span>💕</span>
+                        <span>💗</span>
+                        <span>💞</span>
+                    </div>
+
+                    <!-- Topic 5: Your Talent -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-left">
+                        <div>
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">💫</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">Your Innocence</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                You are innocent and brave gurl 😂😂 but those things depend on time though , sometimes your are tubelight 😂 and sometimes ur smartest gurl (u have always been). MyGurl ur so innocent for this cruel world , i mean even u know this world though but still there are things which u don't know. Dw i'm there too help u, be with u and walk with u. And i promise u that i'll always protects u from every harm this world can give. I'll be ur shield for ur innocence. And i would never leave u and i'll be there with u anytime in good and bad times.🥰💓😁
+                            </p>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-with-corner-decor">
+                                <span class="top-right-flower">🌺</span>
+                                <span class="bottom-left-heart">💖</span>
+                                <img src="images/PAGE4.2.5.jpg" alt="Talent" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-2xl gap-3 animate-breathe" style="animation-delay: 1.2s;">
+                        <span>💓</span>
+                        <span>💕</span>
+                        <span>💗</span>
+                    </div>
+
+                    <!-- Topic 6: Your Beauty -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center scroll-slide-right">
+                        <div class="flex justify-center md:order-first">
+                            <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all h-80 w-64 photo-with-corner-decor">
+                                <span class="top-right-flower">🌼</span>
+                                <span class="bottom-left-heart">💞</span>
+                                <img src="images/PAGE4.2.6.jpg" alt="Beauty" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="md:order-last">
+                            <div class="inline-flex items-center gap-3 mb-4">
+                                <span class="text-4xl">✨</span>
+                                <h3 class="serif-heading text-3xl text-gray-900">Your Beauty</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                Beauty hmm , the word beauty means KAVANA(u) , ur so so so so so so so so beautiful MyGurl and don't think of foolish ok ? . Your every action is beautiful , Your beauty takes my breath away—not just your physical beauty, though you are absolutely gorgeous. It's the beauty of your soul, the radiance that comes from within, the grace in how you carry yourself. You are beautiful inside and out. ur the most beautiful person in the world after my mom. U r even beautiful then my sisters 😁💓.  
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Footer -->
+            <div id="page4-footer-nav" class="flex flex-col items-center justify-center mt-16 mb-12">
+                <div class="decorative-hearts mb-6" aria-hidden="true">
+                    <span class="heart">💖</span>
+                    <span class="heart">💗</span>
+                    <span class="heart">💞</span>
+                </div>
+                <div class="flex gap-4">
+                    <button id="btnNext4" class="luxury-button button-yes">Memories Ahead MyGurl💕</button>
+                </div>
+            </div>
+
+            <!-- Previous Page Button - Bottom Left Corner (Page 5 Style) -->
+            <div id="page4-prev-btn" style="position: fixed; bottom: 30px; left: 30px; z-index: 10; opacity: 0; transition: opacity 1s ease 0.5s;">
+                <button id="btnPrev4" class="page-corner-prev-btn" style="background: rgba(212, 175, 55, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 2px solid rgba(212, 175, 55, 0.3); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; color: #d4af37; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(212, 175, 55, 0.2); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
+                    ←
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+        /* Tab styles */
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active-tab > div {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3) !important;
+            transform: scale(1.08);
+        }
+
+        .tab-content {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease, max-height 0.5s ease;
+        }
+
+        .tab-content.active-content {
+            opacity: 1;
+            max-height: 10000px;
+        }
+    </style>
+    
+    <!-- ============================================
+         PAGE 5: OUR BEAUTIFUL MEMORIES
+         ============================================ -->
+    <div class="page-section" id="page5" style="display: none; background-size: cover; background-position: center; background-attachment: fixed; position: relative; overflow-y: auto; padding: 80px 20px;">
+        
+        <!-- Soft translucent overlay for readability -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 245, 250, 0.75) 100%); z-index: 1;"></div>
+        
+        <!-- Content Container -->
+        <div style="position: relative; z-index: 2; max-width: 1200px; margin: 0 auto;">
+            
+            <!-- Top Section: Title and Quote -->
+            <div class="text-center mb-20" style="opacity: 0; transform: translateY(30px); animation: fadeInUp 1s ease forwards; animation-delay: 0.3s;">
+                <h1 class="serif-heading" style="font-size: 3.5rem; color: #2a2a2a; margin-bottom: 1.5rem; text-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    Our Beautiful Memories ❤️
+                </h1>
+                <p style="font-family: 'Montserrat', sans-serif; font-size: 1.3rem; color: #666; font-style: italic; max-width: 600px; margin: 0 auto; line-height: 1.8;">
+                    "Some moments become memories...<br>and some memories stay with us forever."
+                </p>
+            </div>
+            
+            <!-- Memory Gallery - Scrapbook Style (6 Cards) -->
+            <div class="memory-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-bottom: 60px; padding: 20px;">
+                
+                <!-- Memory Card 1 -->
+                <div class="polaroid-card" data-rotation="-2" style="opacity: 0;">
+                    <div class="polaroid-inner">
+                        <!-- Photo added -->
+                        <div class="polaroid-photo" style="background-image: url('images/PAGE1_2.jpg'); background-size: cover; background-position: center; height: 280px;">
+                        </div>
+                        <div class="polaroid-caption">
+                            <p>Our first photo.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory Card 2 -->
+                <div class="polaroid-card" data-rotation="3" style="opacity: 0;">
+                    <div class="polaroid-inner">
+                        <!-- REPLACE: Change the background-image URL to your photo -->
+                        <div class="polaroid-photo" style="background-image: url('images/PAGE2_2.jpg'); background-size: cover; background-position: center; height: 280px;">
+                    
+                        </div>
+                        <div class="polaroid-caption">
+                            <p>One of my favourite memories.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory Card 3 -->
+                <div class="polaroid-card" data-rotation="-1" style="opacity: 0;">
+                    <div class="polaroid-inner">
+                        <!-- REPLACE: Change the background-image URL to your photo -->
+                        <div class="polaroid-photo" style="background-image: url('images/PAGE6.3.jpg'); background-size: cover; background-position: center; height: 280px;">
+                            
+                        </div>
+                        <div class="polaroid-caption">
+                            <p>The day we laughed the most.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory Card 4 -->
+                <div class="polaroid-card" data-rotation="2" style="opacity: 0;">
+                    <div class="polaroid-inner">
+                        <!-- REPLACE: Change the background-image URL to your photo -->
+                        <div class="polaroid-photo" style="background-image: url('images/PAGE6.4.jpg'); background-size: cover; background-position: center; height: 280px;">
+                           
+                        </div>
+                        <div class="polaroid-caption">
+                            <p>A random day that became unforgettable.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory Card 5 -->
+                <div class="polaroid-card" data-rotation="-3" style="opacity: 0;">
+                    <div class="polaroid-inner">
+                        <!-- REPLACE: Change the background-image URL to your photo -->
+                        <div class="polaroid-photo" style="background-image: url('images/PAGE6.5.5.jpg'); background-size: cover; background-position: center; height: 280px;">
+                            
+                        </div>
+                        <div class="polaroid-caption">
+                            <p>This picture still makes me smile.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory Card 6 -->
+                <div class="polaroid-card" data-rotation="1" style="opacity: 0;">
+                    <div class="polaroid-inner">
+                        <!-- REPLACE: Change the background-image URL to your photo -->
+                        <div class="polaroid-photo" style="background-image: url('images/PAGE6.6.jpg'); background-size: cover; background-position: center; height: 280px;">
+                            
+                        </div>
+                        <div class="polaroid-caption">
+                            <p>And we're still making memories...</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Detailed Memory Stories Section -->
+            <div class="detailed-memories-section" style="max-width: 1000px; margin: 0 auto 60px; padding: 0 20px;">
+                
+                <!-- Memory Story 1 -->
+                <div class="memory-story scroll-fade" style="margin-bottom: 50px; opacity: 0;">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-2xl p-8 shadow-lg">
+                        <!-- Photos (2 photos) -->
+                        <div class="memory-photos-container" style="display: flex; flex-direction: column; gap: 20px;">
+                            <!-- Photo 1 -->
+                            <div class="memory-story-photo" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;">
+                                <img src="images/M1.jpg" alt="Memory 1" style="width: 100%; height: auto; display: block;">
+                            </div>
+                            <!-- Photo 2 - ADD YOUR SECOND PHOTO HERE -->
+                            <div class="memory-story-photo" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;">
+                                <img src="images/M1.1.jpg" alt="Memory 1 Photo 2" style="width: 100%; height: auto; display: block;">
+                            </div>
+                        </div>
+                        <!-- Text -->
+                        <div class="memory-story-text">
+                            
+                            <p style="font-family: 'Montserrat', sans-serif; font-size: 1.05rem; color: #555; line-height: 1.8;">
+                                As I told you in first page our closeness grew over year not in days. At First we used to share reels and laughs and then u asked ur doubts/clarities about us in VCVR. Then from there our bond grew even stronger. And we used chat or msg only i Instagram and the i send a friend request in snapchat. And in snap , gurl we played more game in snapchat then in real life 😂🥰. And u use to send alot of snap , i loved them but now ur not sending but fine. And after ur 2nd SEM xam and holidays u asked my phone no. in snap 'cause you have deactivated the Instagram , so i started to you the reels in snap. So u asked the number 😂😂 and then our bond grew even stronger. And when i'm in my saddest part of life you are there, and listened my thoughts and consoled me💞. And after that we used to chat and msg alot then comes a fine day u send a dance video which u have done with ur frnds , but u have cropped it and i got angry and said something that hurts u. And then i called u to console u and ask for the forgiveness. And we talked like 3Hr that day🥰💗. And then comes my brdy, and randomly we decided to meet and met at Gopalana Mall. And had lot of fun played games (Scary House, Ice Hockey) and then went to ur home for giving keys to ur sis's frnd. And i have so many memorable moments on my brdy after so many long years that too with you is blessing by GOD herself. And while going back to hstl , my phone is died but somehow again i came to you for money for the metro charge but it felt like universe is telling to stay few more minutes with you , such a lovely moments. And went to PRK's movie with ur sister's frnds and stayed at ur place , had lot of fun , played UNO cards, and another game. And next day DOSA 🙏😭after the tiffin , did hackathon, u feed me with singing a song(gehra hua) 💞🥰💓❤️😁🪷💗😽 and did some prank with ur PU classmate ....so on. Those are so so so beautiful memorable moments. And then u had Fest in ur clg wore a saree, black saree and gurl ur the prettiest , cutest, hottest , coolest, loveliest, most beautiful gurl in the world for me. You have been my first crush and will be forever my first crush. I haven't got that crush feeling again for other gurls even they look good. MyCute Little Kolimari🐥 my constant.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory Story 2 -->
+                <div class="memory-story scroll-fade" style="margin-bottom: 50px; opacity: 0;">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-2xl p-8 shadow-lg">
+                        <!-- Text (left on desktop) -->
+                        <div class="memory-story-text md:order-first">
+                           
+                            <p style="font-family: 'Montserrat', sans-serif; font-size: 1.05rem; color: #555; line-height: 1.8;">
+                                And after that stayover in ur home.  I met again u before leaving to my hometown for the festival. And then we met frequently . And once we met and went to eat outside since ur alone in home and no one there , so i came to u for ur company and ate dosa , veg manchurian ball and while food is preparing u asked me a question "What would u do if a girl proposes u ?" and i answered "No , like someone stranger comes and says loves me how could accept her without knowing her" but now i'll tell if the gurl is you then i'll accept ur proposal mygurl. And then we walked, talked and u used sleep in me like i'm ur pillow such a lovely moments those are. And then after 1-2 days we want to the Aquarium and had lot of fun i even made a edit on you by the photos and video i have taken in aquarium. And u loved the edit. And had lot fun in aquarium and we even saw the snake in the tree 😂😂😂 we came to see the fish but saw the snake. And then we roamed the cubbon park. And ur so tired that as evening and went to Vijayanagar there in park u took rest few minutes by sleeping on me such lovely moment do you , i wish that u could sleep on me forever taking me as ur pillow😁😂😽. But that's the moments i adore most me caring u while u sleeping my keeping the mosquito away from u and massaging ur hands , face, head, but not legs 'cause are too far for massaging that's y. And then u needed to pickup ur mangoes from ur sister which has brought from RaneBennuru. And ur so tired so u didn't liked to go and i asked u many times that may come with u it'll be helpfull but u said no , and idk y u so like that gurl, like y i'm here with u in ur bad time ,good time, tired time and energetic time, So if u think u need help don't hesitate with me ask directly ok ?. And we've also gone to the Rajarajeshawari Temple after the completeion of ur clg and took blessing and darshana. And on the same day in temple ,I ordered u the watch as gift which u have liked for ur brdy. And again met one last time before meeting for ur brdy celebration to receive the manoges from u. And mangoes are good and tasted well.
+                            </p>
+                        </div>
+                        <!-- Photos (2 photos - right on desktop) -->
+                        <div class="memory-photos-container md:order-last" style="display: flex; flex-direction: column; gap: 20px;">
+                            <!-- Photo 1 -->
+                            <div class="memory-story-photo" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;">
+                                <img src="images/M2.jpg" alt="Memory 2" style="width: 100%; height: auto; display: block;">
+                            </div>
+                            <!-- Photo 2 - ADD YOUR SECOND PHOTO HERE -->
+                            <div class="memory-story-photo" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;">
+                                <img src="images/M2.2.jpg" alt="Memory 2 Photo 2" style="width: 100%; height: auto; display: block;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory Story 3 -->
+                <div class="memory-story scroll-fade" style="margin-bottom: 50px; opacity: 0;">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-2xl p-8 shadow-lg">
+                        <!-- Photos (3 photos) -->
+                        <div class="memory-photos-container" style="display: flex; flex-direction: column; gap: 20px;">
+                            <!-- Photo 1 -->
+                            <div class="memory-story-photo" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;">
+                                <img src="images/M3.1.jpg" alt="Memory 3" style="width: 100%; height: auto; display: block;">
+                            </div>
+                            <!-- Photo 2 - ADD YOUR SECOND PHOTO HERE -->
+                            <div class="memory-story-photo" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;">
+                                <img src="images/M3.jpg" alt="Memory 3 Photo 2" style="width: 100%; height: auto; display: block;">
+                            </div>
+                            <!-- Photo 3 - ADD YOUR THIRD PHOTO HERE -->
+                            <div class="memory-story-photo" style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;">
+                                <img src="images/M3.2.jpg" alt="Memory 3 Photo 3" style="width: 100%; height: auto; display: block;">
+                            </div>
+                        </div>
+                        <!-- Text -->
+                        <div class="memory-story-text">
+                            
+                            <p style="font-family: 'Montserrat', sans-serif; font-size: 1.05rem; color: #555; line-height: 1.8;">
+                                So I have planned so many plans for ur brdy celebration but everything got spoiled still we're able to celebrate ur brdy but 2 weeks early that's it. So the day before we met i made u BEJARU so i decided to met u and console u and present the gift to u on the same day due to some other events occurred to both of us, but now both of us are free i could have presented the gift on your brdy but it's ok fine. And i travelled to Forum Mall to met u and u too did travel. And met at the metro. And it is raining and went inside at first roamed the mall and sat at a place and talked and then again roamed and in that mean time we have booked the movie seat for backrooms but seats are too front 😭, but fine whatever happened is happened. And the movie is at 3:20 And we still and lot of time, So decided to sit and talk. And gave u the gift for u i.e watch and u loved it so much which means alot to me❤️💓🥰💞, And all want is ur happiness that's it for me and that's the treat for me for ur brdy. And had lunch in subway and i'm the one who feed(tinsidu) u with so much love, u may not have seen there but i really poured all my love and affection and feed you. And after lunch went to movie, Watched the movie but you feeling too cold but i don't have any coat to help , ur strong so ur ok🥰💓. And then at Burger Cafe 😂😂 Instead of the E-receipt i selected the paper receipt and paper are not there 😅🤣😂🤣😂 and struggled to get the our order chocolate mousse cake. After that 🤣🤣 the moment of the day happened , went ur place/home 'cause u wanted to show ur home and showed, But while i'm returning to my hstl, we exchanged hugs and i kissed on you forehead(Did for too long time adn got in to problem 😂🤣😂), such lovely goodbye moment until some bastards spoils it not spoiled entirely like who remembers that it become the some bad experience that's it noting to worry. Police and that shop owner thought that we are doing something inappropriate and swa us through the CCTV. And that Fat guy and his 3 frnds suurounded me and started to threaten me to beat and handover me to the police 'cause we're too close while goodbye moment that's. At first they gave warning and left me alone. But that police again called and told them to hold me there until they arrive but that brother took my phone and send msg to his wtsapp number without my permission and he won't stop there, he took ur number too, which made me angry but wt can i do against the 4 ppl they amy kill/beat to hell. And then bus came and went to hstl. After the next days he called me and informed about the police that m they took my number not urs gurl , i requested that brother not to give so u can be safe. And after 1-2 day policeman called and asked few question about our age ,clg, studies and all and said not to repeat it again, and i have shared we words about how that brother took my phone and got our number without consent and all. So alot of things happened.<br>And i think u even cried on that day 😭😭😭😭 which made sad, more sad u can't imagine for u it maybe some random day but for me it is a special day "Yours Birthday". And felt like i made mygurl too cry on special day and all, ok leave it what happened is happened a worst and beautiful memories in single day 😂💞💞. <br>And one more thing after all that issue u stayed with me and not ignored or mistreated me again , which made me fell in love with you again and again. "I Love You Bangari💞". 
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Continue Button -->
+            <div class="text-center" style="opacity: 0; animation: fadeInUp 1s ease forwards; animation-delay: 3.5s;">
+                <button id="btnNext5" class="luxury-button button-yes" style="font-size: 1.2rem; padding: 18px 50px; box-shadow: 0 15px 45px rgba(212, 175, 55, 0.4);">
+                    FinalPage Next ❤️
+                </button>
+            </div>
+            
+        </div>
+        
+        <!-- Previous Button - Bottom Left -->
+        <div style="position: fixed; bottom: 30px; left: 30px; z-index: 10;">
+            <button id="btnPrev5" class="page-corner-prev-btn" style="background: rgba(212, 175, 55, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; color: #d4af37; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);">
+                ←
+            </button>
+        </div>
+        
+    </div>
+    
+    <!-- Scrapbook Styles for Memory Page -->
+    <style>
+        /* Fade in up animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Polaroid Card Styling */
+        .polaroid-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+        
+        .polaroid-inner {
+            background: #fff;
+            padding: 15px;
+            padding-bottom: 50px;
+            border-radius: 3px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+        
+        .polaroid-card:hover .polaroid-inner {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        .polaroid-photo {
+            border-radius: 2px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .polaroid-caption {
+            padding-top: 15px;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.1rem;
+            color: #333;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .polaroid-caption p {
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .memory-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+                gap: 30px !important;
+            }
+            
+            .polaroid-photo {
+                height: 240px !important;
+            }
+            
+            #page5 h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            #page5 h2 {
+                font-size: 2rem !important;
+            }
+            
+            .memory-story-photo {
+                height: 280px !important;
+            }
+            
+            .memory-story-text h3 {
+                font-size: 1.6rem !important;
+            }
+            
+            .memory-story-text p {
+                font-size: 0.95rem !important;
+            }
+            
+            .memory-story .bg-white {
+                padding: 1.5rem !important;
+            }
+        }
+    </style>
+    
+    <!-- JavaScript for Memory Cards Scroll Animation -->
+    <script>
+        // Animate memory cards on scroll for Page 5
+        function initMemoryCardsAnimation() {
+            const cards = document.querySelectorAll('.polaroid-card');
+            
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        const card = entry.target;
+                        const rotation = card.getAttribute('data-rotation') || '0';
+                        
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = `rotate(${rotation}deg)`;
+                            card.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                        }, index * 100);
+                        
+                        observer.unobserve(card);
+                    }
+                });
+            }, observerOptions);
+            
+            cards.forEach(card => {
+                const rotation = card.getAttribute('data-rotation') || '0';
+                card.style.transform = `rotate(${rotation}deg) translateY(40px)`;
+                observer.observe(card);
+            });
+        }
+        
+        // Call when navigating to page 5
+        document.addEventListener('DOMContentLoaded', () => {
+            // Will be triggered by navigation function
+        });
+    </script>
+    
+    <!-- ============================================
+         PAGE 6: THE GRAND FINALE
+         ============================================ -->
+    <div class="page-section" id="page6" style="display: none; min-height: 100vh; position: relative; overflow: hidden; padding: 0;">
+        
+        <!-- Full-Screen Background Image -->
+        <div id="page6-background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0; transition: opacity 1.5s ease;">
+            <!-- CUSTOMIZE: Replace with your background image path -->
+            <img src="images/PAGE5.jpg" alt="Background" style="width: 100%; height: 100%; object-fit: cover;">
+            <!-- Soft translucent overlay -->
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 192, 203, 0.12) 100%);"></div>
+        </div>
+
+        <!-- Floating Particles Canvas -->
+        <canvas id="page6-particles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;"></canvas>
+
+        <!-- LEFT Concentric Rings: "Happy Birthday" in 15 Languages -->
+        <div id="left-rings" style="position: absolute; left: -15%; top: 50%; transform: translateY(-50%); width: 50%; height: 100%; z-index: 3; opacity: 0; transition: opacity 2s ease 0.5s;">
+            <svg width="100%" height="100%" viewBox="0 0 600 600" style="overflow: visible;">
+                <!-- Ring 1 -->
+                <defs>
+                    <path id="leftRing1" d="M 300,150 A 150,150 0 0,1 300,450" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="16" font-weight="300" fill="#FFFFFF" letter-spacing="9" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#leftRing1" startOffset="0%">
+                        <animate attributeName="startOffset" from="0%" to="100%" dur="35s" repeatCount="indefinite"/>
+                        Happy Birthday • जन्मदिन मुबारक हो • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 2 -->
+                <defs>
+                    <path id="leftRing2" d="M 300,130 A 170,170 0 0,1 300,470" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="15" font-weight="300" fill="#FFFFFF" letter-spacing="8" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#leftRing2" startOffset="0%">
+                        <animate attributeName="startOffset" from="0%" to="100%" dur="38s" repeatCount="indefinite"/>
+                        Feliz Cumpleaños • お誕生日おめでとう • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 3 -->
+                <defs>
+                    <path id="leftRing3" d="M 300,110 A 190,190 0 0,1 300,490" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="15" font-weight="300" fill="#FFFFFF" letter-spacing="8" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#leftRing3" startOffset="0%">
+                        <animate attributeName="startOffset" from="0%" to="100%" dur="36s" repeatCount="indefinite"/>
+                        Joyeux Anniversaire • 생일 축하해요 • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 4 -->
+                <defs>
+                    <path id="leftRing4" d="M 300,90 A 210,210 0 0,1 300,510" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="14" font-weight="300" fill="#FFFFFF" letter-spacing="7" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#leftRing4" startOffset="0%">
+                        <animate attributeName="startOffset" from="0%" to="100%" dur="40s" repeatCount="indefinite"/>
+                        Buon Compleanno • 生日快乐 • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 5 -->
+                <defs>
+                    <path id="leftRing5" d="M 300,70 A 230,230 0 0,1 300,530" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="14" font-weight="300" fill="#FFFFFF" letter-spacing="7" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#leftRing5" startOffset="0%">
+                        <animate attributeName="startOffset" from="0%" to="100%" dur="37s" repeatCount="indefinite"/>
+                        Alles Gute zum Geburtstag • عيد ميلاد سعيد • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 6 -->
+                <defs>
+                    <path id="leftRing6" d="M 300,50 A 250,250 0 0,1 300,550" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="13" font-weight="300" fill="#FFFFFF" letter-spacing="6" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#leftRing6" startOffset="0%">
+                        <animate attributeName="startOffset" from="0%" to="100%" dur="42s" repeatCount="indefinite"/>
+                        С Днём Рождения • Χρόνια Πολλά • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 7 -->
+                <defs>
+                    <path id="leftRing7" d="M 300,30 A 270,270 0 0,1 300,570" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="13" font-weight="300" fill="#FFFFFF" letter-spacing="6" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#leftRing7" startOffset="0%">
+                        <animate attributeName="startOffset" from="0%" to="100%" dur="39s" repeatCount="indefinite"/>
+                        Parabéns • Grattis på födelsedagen • 
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+
+        <!-- RIGHT Concentric Rings: "I Love You" in 15 Languages -->
+        <div id="right-rings" style="position: absolute; right: -15%; top: 50%; transform: translateY(-50%); width: 50%; height: 100%; z-index: 3; opacity: 0; transition: opacity 2s ease 0.5s;">
+            <svg width="100%" height="100%" viewBox="0 0 600 600" style="overflow: visible;">
+                <!-- Ring 1 -->
+                <defs>
+                    <path id="rightRing1" d="M 300,450 A 150,150 0 0,1 300,150" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="16" font-weight="300" fill="#FFFFFF" letter-spacing="9" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#rightRing1" startOffset="100%">
+                        <animate attributeName="startOffset" from="100%" to="0%" dur="35s" repeatCount="indefinite"/>
+                        I Love You • मैं तुमसे प्यार करता हूँ • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 2 -->
+                <defs>
+                    <path id="rightRing2" d="M 300,470 A 170,170 0 0,1 300,130" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="15" font-weight="300" fill="#FFFFFF" letter-spacing="8" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#rightRing2" startOffset="100%">
+                        <animate attributeName="startOffset" from="100%" to="0%" dur="38s" repeatCount="indefinite"/>
+                        Te Amo • 愛してる • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 3 -->
+                <defs>
+                    <path id="rightRing3" d="M 300,490 A 190,190 0 0,1 300,110" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="15" font-weight="300" fill="#FFFFFF" letter-spacing="8" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#rightRing3" startOffset="100%">
+                        <animate attributeName="startOffset" from="100%" to="0%" dur="36s" repeatCount="indefinite"/>
+                        Je t'aime • 사랑해요 • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 4 -->
+                <defs>
+                    <path id="rightRing4" d="M 300,510 A 210,210 0 0,1 300,90" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="14" font-weight="300" fill="#FFFFFF" letter-spacing="7" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#rightRing4" startOffset="100%">
+                        <animate attributeName="startOffset" from="100%" to="0%" dur="40s" repeatCount="indefinite"/>
+                        Ti Amo • 我爱你 • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 5 -->
+                <defs>
+                    <path id="rightRing5" d="M 300,530 A 230,230 0 0,1 300,70" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="14" font-weight="300" fill="#FFFFFF" letter-spacing="7" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#rightRing5" startOffset="100%">
+                        <animate attributeName="startOffset" from="100%" to="0%" dur="37s" repeatCount="indefinite"/>
+                        Ich liebe dich • أحبك • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 6 -->
+                <defs>
+                    <path id="rightRing6" d="M 300,550 A 250,250 0 0,1 300,50" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="13" font-weight="300" fill="#FFFFFF" letter-spacing="6" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#rightRing6" startOffset="100%">
+                        <animate attributeName="startOffset" from="100%" to="0%" dur="42s" repeatCount="indefinite"/>
+                        Я люблю тебя • Σ' αγαπώ • 
+                    </textPath>
+                </text>
+
+                <!-- Ring 7 -->
+                <defs>
+                    <path id="rightRing7" d="M 300,570 A 270,270 0 0,1 300,30" fill="none"/>
+                </defs>
+                <text font-family="'Playfair Display', serif" font-size="13" font-weight="300" fill="#FFFFFF" letter-spacing="6" style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);">
+                    <textPath href="#rightRing7" startOffset="100%">
+                        <animate attributeName="startOffset" from="100%" to="0%" dur="39s" repeatCount="indefinite"/>
+                        Eu te amo • Jag älskar dig • 
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+
+        <!-- CENTER CONTENT -->
+        <div id="page6-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 4; text-align: center; width: 90%; max-width: 700px;">
+            
+            <!-- Heart Icon with Beat Animation -->
+            <div id="page6-heart" style="font-size: 3.5rem; margin-bottom: 0.8rem; opacity: 0; transition: opacity 1s ease 2.5s;">
+                ❤️
+            </div>
+
+            <!-- Main Title -->
+            <div id="page6-title" style="opacity: 0; transform: translateY(30px); transition: opacity 1.5s ease 2s, transform 1.5s ease 2s;">
+                <h1 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: #FFFFFF; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 4px 16px rgba(0, 0, 0, 0.4); line-height: 1.2; margin-bottom: 0.5rem;">
+                    Happiest Birthday
+                </h1>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 800; color: #FFFFFF; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 4px 16px rgba(0, 0, 0, 0.4); margin-bottom: 1.8rem;">
+                   Muddu Bangari
+                </h2>
+            </div>
+
+            <!-- Glassmorphism Card - Smaller with reduced opacity -->
+            <div id="page6-card" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.25); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 0 50px rgba(255, 255, 255, 0.12); padding: 1.8rem 2rem; opacity: 0; transform: translateY(30px); transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1) 3s, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1) 3s; max-width: 550px; margin: 0 auto;">
+                <p style="font-family: 'Montserrat', sans-serif; font-size: 1.1rem; line-height: 1.7; color: #FFFFFF; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.6); font-weight: 700; letter-spacing: 0.3px;">
+                    Once agian Happiest Birthday MyGurl💗<br>
+                    Be Happy❤️, Be True😁, Be Brave🪷, Be Strong💪<br>
+                    ❤️I Love You Bangari❤️ <br>
+                    "Will You Marry Me?"😁🥰, (JK , munde noduva😁)<br>
+                    <span style="font-weight: 800; font-size: 1.25rem; display: inline-block; margin-top: 0.4rem; color: #FFFFFF;">My Constant❤️ , My Life💗, My Everything💞</span>
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Previous Page Button - Bottom Left Corner -->
+        <div id="page6-prev-btn" style="position: fixed; bottom: 30px; left: 30px; z-index: 10; opacity: 0; transition: opacity 1s ease 3.5s;">
+            <button id="btnPrev6" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700; color: #FFFFFF; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);">
+                ←
+            </button>
+        </div>
+
+        <style>
+            /* Button Hover Effect */
+            #btnPrev6:hover {
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.5);
+                transform: translateY(-2px) scale(1.05);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            #btnPrev6:active {
+                transform: translateY(0) scale(1);
+            }
+
+            /* Page 2 and 3 corner buttons */
+            .page-corner-prev-btn:hover {
+                background: rgba(212, 175, 55, 0.25) !important;
+                border-color: rgba(212, 175, 55, 0.6) !important;
+                transform: translateY(-2px) scale(1.05);
+                box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3) !important;
+            }
+
+            .page-corner-prev-btn:active {
+                transform: translateY(0) scale(1);
+            }
+
+            /* Responsive positioning */
+            @media (max-width: 768px) {
+                #page6-prev-btn, #page4-prev-btn {
+                    bottom: 20px;
+                    left: 20px;
+                }
+                #btnPrev6 {
+                    width: 45px;
+                    height: 45px;
+                    font-size: 1.3rem;
+                }
+                .page-corner-prev-btn {
+                    width: 45px !important;
+                    height: 45px !important;
+                    font-size: 1.3rem !important;
+                }
+            }
+            /* Heart Beat Animation - Smoother */
+            @keyframes heartBeat {
+                0%, 100% { transform: scale(1); }
+                10% { transform: scale(1.12); }
+                20% { transform: scale(1); }
+                30% { transform: scale(1.12); }
+                40% { transform: scale(1); }
+            }
+
+            #page6-heart {
+                animation: heartBeat 2.5s ease-in-out infinite;
+                will-change: transform;
+            }
+
+            /* Gentle Float Animation for Title - Smoother */
+            @keyframes gentleFloat {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-6px); }
+            }
+
+            #page6-title {
+                animation: gentleFloat 5s ease-in-out infinite;
+                will-change: transform;
+            }
+
+            /* Hardware acceleration for smooth animations */
+            #page6-background,
+            #page6-particles,
+            #left-rings,
+            #right-rings,
+            #page6-center,
+            #page6-card {
+                will-change: opacity, transform;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+            }
+
+            /* Optimize SVG rendering */
+            #left-rings svg,
+            #right-rings svg {
+                shape-rendering: geometricPrecision;
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                #page6-title h1 { font-size: 2.2rem !important; }
+                #page6-title h2 { font-size: 1.8rem !important; }
+                #page6-heart { font-size: 2.8rem !important; }
+                #page6-card { padding: 1.3rem 1.5rem !important; max-width: 90% !important; }
+                #page6-card p { font-size: 1rem !important; }
+                #left-rings, #right-rings { display: none; }
+            }
+        </style>
+
+    </div>
+    
+    <!-- ============================================
+         JAVASCRIPT: ANIMATIONS & INTERACTIVITY
+         ============================================ -->
+    <script>
+        // ============================================
+        // FLOATING CANVAS EFFECT
+        // ============================================
+        
+        const canvas = document.getElementById('floatingCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Particle configuration
+        const particleTypes = {
+            heart: { symbol: '❤️', size: 12 },
+            sparkle: { symbol: '✨', size: 8 },
+            bokeh: { symbol: '○', size: 20 }
+        };
+        
+        // Particles array
+        let particles = [];
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 20;
+                this.size = Math.random() * 20 + 10;
+                this.speedY = Math.random() * 1 + 0.5;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.type = ['heart', 'sparkle', 'bokeh'][Math.floor(Math.random() * 3)];
+            }
+            
+            update(mouseX, mouseY) {
+                this.y -= this.speedY;
+                
+                // Gentle mouse interaction
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    const angle = Math.atan2(dy, dx);
+                    this.speedX += Math.cos(angle + Math.PI) * 0.3;
+                    this.speedY += Math.sin(angle + Math.PI) * 0.3;
+                }
+                
+                this.x += this.speedX * 0.5;
+                this.speedX *= 0.98;
+                
+                // Reset opacity for breathing effect
+                this.opacity = Math.sin(Date.now() / 1000 + this.x) * 0.3 + 0.3;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.font = this.size + 'px Arial';
+                ctx.fillText(particleTypes[this.type].symbol, this.x, this.y);
+                ctx.restore();
+            }
+        }
+        
+        // Initialize particles
+        function initParticles() {
+            for (let i = 0; i < 30; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        let mouseX = canvas.width / 2;
+        let mouseY = canvas.height / 2;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        document.addEventListener('touchmove', (e) => {
+            mouseX = e.touches[0].clientX;
+            mouseY = e.touches[0].clientY;
+        });
+        
+        // Animation loop
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach((p, index) => {
+                p.update(mouseX, mouseY);
+                p.draw();
+                
+                // Remove if off-screen and spawn new
+                if (p.y < -10) {
+                    particles[index] = new Particle();
+                }
+            });
+            
+            requestAnimationFrame(animateParticles);
+        }
+        
+        initParticles();
+        animateParticles();
+        
+        // ============================================
+        // PAGE 1: MAIN HEADING LETTER-BY-LETTER ANIMATION
+        // ============================================
+        
+        const headingText = "Happy Birthday\nKavana \tP \tG \naka \nBangari 💓";
+        const mainHeading = document.getElementById('mainHeading');
+
+        function animateHeading() {
+            mainHeading.innerHTML = '';
+
+            // Use Array.from to preserve emoji and combined characters
+            const letters = Array.from(headingText);
+
+            // Only increment animIndex for characters we animate
+            let animIndex = 0;
+            letters.forEach((char) => {
+                if (char === '\n') {
+                    mainHeading.appendChild(document.createElement('br'));
+                    return;
+                }
+
+                if (char === ' ') {
+                    // Append a plain space node so word gaps render correctly
+                    mainHeading.appendChild(document.createTextNode(' '));
+                    return;
+                }
+
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.className = 'animate-letter';
+                span.style.animationDelay = `${animIndex * 0.06}s`;
+                mainHeading.appendChild(span);
+
+                animIndex++;
+            });
+
+            // Calculate total animation time: (number of characters * delay) + animation duration
+            const totalAnimationTime = (animIndex * 0.06 * 1000) + 600; // 600ms is the animation duration
+            
+            // Show buttons after text animation completes
+            setTimeout(() => {
+                const page1Buttons = document.getElementById('page1-buttons');
+                if (page1Buttons) {
+                    page1Buttons.style.opacity = '1';
+                }
+            }, totalAnimationTime);
+        }
+        
+        // Start heading animation after a short delay
+        setTimeout(animateHeading, 500);
+        
+        // ============================================
+        // PAGE 1: RUNAWAY BUTTON INTERACTION
+        // ============================================
+        
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+        let musicPlaying = false;
+        
+        // Button "No" teleportation logic
+        btnNo.addEventListener('mouseenter', teleportButton);
+        btnNo.addEventListener('touchstart', teleportButton);
+        
+        function teleportButton(e) {
+            e.preventDefault();
+            
+            // Generate random position
+            const randomX = Math.random() * (window.innerWidth - 200);
+            const randomY = Math.random() * (window.innerHeight * 0.8);
+            
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+            btnNo.classList.add('animate-teleport');
+            
+            // Remove animation class to allow re-triggering
+            setTimeout(() => {
+                btnNo.classList.remove('animate-teleport');
+            }, 500);
+        }
+        
+        // Force click "No" button
+        btnNo.addEventListener('click', () => {
+            btnNo.textContent = 'YES! 🎉';
+            btnNo.disabled = true;
+            setTimeout(() => {
+                proceedToPage2();
+            }, 500);
+        });
+
+        // Accessibility: allow touchend for mobile on Yes button
+        btnYes.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            proceedToPage2();
+        });
+
+        // Keyboard accessibility: Enter/Space triggers
+        [btnYes, btnNo].forEach((b) => {
+            b.setAttribute('tabindex', '0');
+            b.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Enter' || ev.key === ' ') {
+                    ev.preventDefault();
+                    b.click();
+                }
+            });
+        });
+        
+        // ============================================
+        // PAGE 1: YES BUTTON & MUSIC TRIGGER
+        // ============================================
+        
+        btnYes.addEventListener('click', proceedToPage2);
+        
+        // ============================================
+        // MUSIC MANAGEMENT - Different songs per page with fade in/out
+        // ============================================
+        
+        let currentAudio = null;
+        let audioFadeInterval = null;
+        
+        // Map of page numbers to audio element IDs
+        const pageMusic = {
+            2: 'music-page2',
+            3: 'music-page3',
+            4: 'music-page4',
+            5: 'music-page5',
+            6: 'music-page6'
+        };
+        
+        // Fade out current audio
+        function fadeOutAudio(audio, callback) {
+            if (!audio || audio.paused) {
+                if (callback) callback();
+                return;
+            }
+            
+            let volume = audio.volume;
+            
+            if (audioFadeInterval) clearInterval(audioFadeInterval);
+            
+            audioFadeInterval = setInterval(() => {
+                volume -= 0.05;
+                if (volume <= 0) {
+                    audio.volume = 0;
+                    audio.pause();
+                    clearInterval(audioFadeInterval);
+                    if (callback) callback();
+                } else {
+                    audio.volume = Math.max(volume, 0);
+                }
+            }, 50);
+        }
+        
+        // Fade in new audio
+        function fadeInAudio(audio) {
+            if (!audio) return;
+            
+            audio.volume = 0;
+            
+            const playPromise = audio.play();
+            if (playPromise && playPromise.then) {
+                playPromise.catch(err => {
+                    console.log('Audio playback failed:', err);
+                });
+            }
+            
+            let volume = 0;
+            const fadeIn = setInterval(() => {
+                volume += 0.05;
+                audio.volume = Math.min(volume, 0.6);
+                if (volume >= 0.6) clearInterval(fadeIn);
+            }, 100);
+        }
+        
+        // Switch music when changing pages
+        function switchPageMusic(pageNum) {
+            const newMusicId = pageMusic[pageNum];
+            
+            if (!newMusicId) {
+                // No music for this page, fade out current
+                if (currentAudio) {
+                    fadeOutAudio(currentAudio);
+                    currentAudio = null;
+                }
+                return;
+            }
+            
+            const newAudio = document.getElementById(newMusicId);
+            
+            if (currentAudio === newAudio) {
+                // Same song, keep playing
+                return;
+            }
+            
+            // Fade out old, fade in new
+            fadeOutAudio(currentAudio, () => {
+                currentAudio = newAudio;
+                fadeInAudio(currentAudio);
+            });
+        }
+        
+        function proceedToPage2() {
+            // Idempotent guard
+            if (window.__transitioning) return;
+            window.__transitioning = true;
+            
+            // Show audio visualizer
+            document.getElementById('audioVisualizer').classList.add('active');
+            
+            // Navigate to page 2
+            setTimeout(() => {
+                navigateToPage(2);
+                window.__transitioning = false;
+            }, 300);
+        }
+        
+        // Audio visualizer control - toggle current audio
+        document.getElementById('audioVisualizer').addEventListener('click', () => {
+            const visualizer = document.getElementById('audioVisualizer');
+            
+            if (currentAudio) {
+                if (currentAudio.paused) {
+                    fadeInAudio(currentAudio);
+                    visualizer.classList.remove('paused');
+                } else {
+                    fadeOutAudio(currentAudio);
+                    visualizer.classList.add('paused');
+                }
+            }
+        });
+        
+        // ============================================
+        // SCROLL-TRIGGERED ANIMATIONS
+        // ============================================
+        
+        function triggerScrollAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Fade in scroll animations
+            document.querySelectorAll('.scroll-fade').forEach((el) => {
+                gsap.to(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 80%',
+                        onEnter: () => {
+                            el.classList.add('in');
+                        }
+                    }
+                });
+            });
+            
+            // Slide in left animations
+            document.querySelectorAll('.scroll-slide-left').forEach((el) => {
+                gsap.to(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 80%',
+                        onEnter: () => {
+                            el.classList.add('in');
+                        }
+                    }
+                });
+            });
+            
+            // Slide in right animations
+            document.querySelectorAll('.scroll-slide-right').forEach((el) => {
+                gsap.to(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 80%',
+                        onEnter: () => {
+                            el.classList.add('in');
+                        }
+                    }
+                });
+            });
+        }
+        
+        
+        // ============================================
+        // PAGE 4: TAB SWITCHING FUNCTIONALITY
+        // ============================================
+        
+        document.querySelectorAll('.page4-tab').forEach((tabBtn) => {
+            tabBtn.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.page4-tab').forEach(btn => {
+                    btn.classList.remove('active-tab');
+                });
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active-content');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.add('active-tab');
+                
+                // Show corresponding content
+                const contentElement = document.getElementById(tabId);
+                if (contentElement) {
+                    contentElement.classList.add('active-content');
+                    
+                    // Trigger scroll animations for tab content
+                    setTimeout(() => {
+                        triggerScrollAnimations();
+                    }, 100);
+                }
+            });
+        });
+        
+        // ============================================
+        // PAGE 5 ANIMATIONS & PARTICLES
+        // ============================================
+        
+        function initPage5Animations() {
+            // Trigger memory cards animation on page 5
+            initMemoryCardsAnimation();
+        }
+        
+        function initPage6Animations() {
+            const page6 = document.getElementById('page6');
+            if (!page6 || page6.style.display === 'none') return;
+            
+            // 1. Background fade in
+            setTimeout(() => {
+                const bg = document.getElementById('page6-background');
+                if (bg) bg.style.opacity = '1';
+            }, 100);
+            
+            // 2. Rings fade in
+            setTimeout(() => {
+                const leftRings = document.getElementById('left-rings');
+                const rightRings = document.getElementById('right-rings');
+                if (leftRings) leftRings.style.opacity = '1';
+                if (rightRings) rightRings.style.opacity = '1';
+            }, 800);
+            
+            // 3. Center title fade up
+            setTimeout(() => {
+                const title = document.getElementById('page6-title');
+                if (title) {
+                    title.style.opacity = '1';
+                    title.style.transform = 'translateY(0)';
+                }
+            }, 1500);
+            
+            // 4. Heart icon
+            setTimeout(() => {
+                const heart = document.getElementById('page6-heart');
+                if (heart) heart.style.opacity = '1';
+            }, 2000);
+            
+            // 5. Glass card fade in
+            setTimeout(() => {
+                const card = document.getElementById('page6-card');
+                if (card) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            }, 2500);
+            
+            // 6. Previous button fade in
+            setTimeout(() => {
+                const prevBtn = document.getElementById('page6-prev-btn');
+                if (prevBtn) prevBtn.style.opacity = '1';
+            }, 3000);
+            
+            // Initialize particle system
+            initPage6Particles();
+        }
+        
+        // Floating Particles System for Page 6
+        function initPage6Particles() {
+            const canvas = document.getElementById('page6-particles');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const particles = [];
+            const particleCount = 25; // Reduced from 40 for better performance
+            
+            class Particle {
+                constructor() {
+                    this.reset();
+                    this.y = Math.random() * canvas.height;
+                }
+                
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height + 20;
+                    this.size = Math.random() * 10 + 6; // Slightly smaller
+                    this.speedY = Math.random() * 0.4 + 0.2; // Slower speed
+                    this.speedX = (Math.random() - 0.5) * 0.2;
+                    this.opacity = Math.random() * 0.4 + 0.2; // More subtle
+                    this.rotation = Math.random() * 360;
+                    this.rotationSpeed = (Math.random() - 0.5) * 1.5;
+                    
+                    const types = ['❤️', '💖', '✨', '💗'];
+                    this.symbol = types[Math.floor(Math.random() * types.length)];
+                }
+                
+                update() {
+                    this.y -= this.speedY;
+                    this.x += this.speedX;
+                    this.rotation += this.rotationSpeed;
+                    
+                    if (this.y < -20 || this.x < -20 || this.x > canvas.width + 20) {
+                        this.reset();
+                    }
+                }
+                
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.opacity;
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate((this.rotation * Math.PI) / 180);
+                    ctx.font = `${this.size}px Arial`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(this.symbol, 0, 0);
+                    ctx.restore();
+                }
+            }
+            
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+            
+            let animationFrameId;
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            // Cleanup function
+            window.addEventListener('beforeunload', () => {
+                cancelAnimationFrame(animationFrameId);
+            });
+            
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+        
+        // ============================================
+        // PAGE NAVIGATION SYSTEM
+        // ============================================
+
+        let currentPage = 1;
+        const pages = ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'];
+        
+        function navigateToPage(pageNum) {
+            if (pageNum < 1 || pageNum > pages.length || pageNum === currentPage) return;
+            
+            const currentPageEl = document.getElementById(pages[currentPage - 1]);
+            const nextPageEl = document.getElementById(pages[pageNum - 1]);
+            
+            if (!currentPageEl || !nextPageEl) return;
+            
+            // Fade out current
+            currentPageEl.style.animation = 'fadeOut 0.6s ease forwards';
+            
+            setTimeout(() => {
+                currentPageEl.style.display = 'none';
+                currentPageEl.style.opacity = '';
+                currentPageEl.style.animation = '';
+                
+                // Show next page with proper display and fade in
+                nextPageEl.style.display = 'flex';
+                nextPageEl.style.opacity = '0';
+                nextPageEl.style.animation = 'fadeIn 0.6s ease forwards';
+                
+                currentPage = pageNum;
+                
+                // Switch music for new page with fade transition
+                switchPageMusic(pageNum);
+                
+                // Trigger Page 5 (memory) animations
+                if (pageNum === 5) {
+                    initPage5Animations();
+                }
+                
+                // Trigger Page 6 (finale) animations
+                if (pageNum === 6) {
+                    initPage6Animations();
+                }
+                
+                // Trigger scroll animations for new page
+                setTimeout(() => {
+                    triggerScrollAnimations();
+                }, 100);
+                
+                // Update nav buttons
+                updateNavButtons();
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }, 600);
+        }
+        
+        function updateNavButtons() {
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+            const btnPrev4Wrapper = document.getElementById('page4-prev-btn');
+            const btnNext4 = document.getElementById('btnNext4');
+            
+            if (btnPrev) {
+                // Hide "Previous" button on pages 1 and 2 (no back on the immediate next page)
+                btnPrev.style.display = currentPage <= 2 ? 'none' : 'inline-block';
+            }
+            if (btnNext) {
+                btnNext.style.display = currentPage === pages.length ? 'none' : 'inline-block';
+            }
+
+            // Handle Page 4 corner previous button with opacity transition (like Page 5)
+            if (btnPrev4Wrapper) {
+                if (currentPage === 4) {
+                    btnPrev4Wrapper.style.opacity = '1';
+                } else {
+                    btnPrev4Wrapper.style.opacity = '0';
+                }
+            }
+            if (btnNext4) {
+                btnNext4.style.display = currentPage === pages.length ? 'none' : 'inline-block';
+            }
+        }
+        
+        // Attach navigation listeners
+        const btnNextNav = document.getElementById('btnNext');
+        const btnPrevNav = document.getElementById('btnPrev');
+        const btnNext3 = document.getElementById('btnNext3');
+        const btnNext4 = document.getElementById('btnNext4');
+        const btnPrev4 = document.getElementById('btnPrev4');
+        
+        if (btnNextNav) {
+            btnNextNav.addEventListener('click', () => {
+                navigateToPage(currentPage + 1);
+            });
+        }
+
+        if (btnNext3) {
+            btnNext3.addEventListener('click', () => {
+                navigateToPage(currentPage + 1);
+            });
+        }
+        
+        if (btnPrevNav) {
+            btnPrevNav.addEventListener('click', () => {
+                navigateToPage(currentPage - 1);
+            });
+        }
+
+        if (btnNext4) {
+            btnNext4.addEventListener('click', () => {
+                navigateToPage(currentPage + 1);
+            });
+        }
+
+        if (btnPrev4) {
+            btnPrev4.addEventListener('click', () => {
+                navigateToPage(currentPage - 1);
+            });
+        }
+
+        const btnPrev5 = document.getElementById('btnPrev5');
+        if (btnPrev5) {
+            btnPrev5.addEventListener('click', () => {
+                navigateToPage(currentPage - 1);
+            });
+        }
+        
+        const btnNext5 = document.getElementById('btnNext5');
+        if (btnNext5) {
+            btnNext5.addEventListener('click', () => {
+                navigateToPage(currentPage + 1);
+            });
+        }
+        
+        const btnPrev6 = document.getElementById('btnPrev6');
+        if (btnPrev6) {
+            btnPrev6.addEventListener('click', () => {
+                navigateToPage(currentPage - 1);
+            });
+        }
+
+        const btnPrev2 = document.getElementById('btnPrev2');
+        if (btnPrev2) {
+            btnPrev2.addEventListener('click', () => {
+                navigateToPage(currentPage - 1);
+            });
+        }
+
+        const btnPrev3 = document.getElementById('btnPrev3');
+        if (btnPrev3) {
+            btnPrev3.addEventListener('click', () => {
+                navigateToPage(currentPage - 1);
+            });
+        }
+        
+        // Initialize nav buttons
+        updateNavButtons();
+        
+        // ============================================
+        
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                }
+                to {
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+    
+</body>
+</html>
